@@ -53,6 +53,8 @@
 - US-18 : En tant que nouvel utilisateur, je veux consulter des guides de démarrage.
 - US-19 : En tant qu’administrateur, je veux pouvoir gérer et publier des documents techniques mis à jour.
 
+
+
 ---
 
 ## Tableau de suivi des User Stories
