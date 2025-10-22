@@ -1,4 +1,4 @@
-# Backlog Projet : IT Department Task Tracker
+# Conduite de Projet : Project manager app
 
 ## Technologies utilisées
 - **Frontend** : Vue.js pour construire une interface utilisateur réactive et modulable.
