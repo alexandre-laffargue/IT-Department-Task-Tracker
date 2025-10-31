@@ -6,7 +6,7 @@
 - **Base de données** : MongoDB pour gérer les données documents flexibles comme les tâches, issues, utilisateurs.
 - **Authentification** : JSON Web Tokens (JWT) pour sécuriser l’accès et la gestion des utilisateurs.
 - **Autres outils** : Utilisation de Docker pour la conteneurisation, GitHub Actions pour CI/CD.
-- **Test** : Utilisation de Jest et de Selenium pour les tests.
+- **Test** : Utilisation de Vitest et de Selenium pour les tests.
 
 ---
 
@@ -18,69 +18,137 @@
 - Gestion des tests (qualité, vérification)
 - Gestion de la documentation (connaissances, référentiels)
 
----
+---# Backlog Produit – Projet Trello/Jira-Like
 
-## User Stories
+## Contexte
 
-### Gestion des utilisateurs
-- US-01 : En tant qu’administrateur, je veux pouvoir créer, modifier et supprimer des comptes utilisateurs pour gérer l’accès au système.
-- US-02 : En tant qu’administrateur, je veux attribuer des rôles (utilisateur, IT, responsable) pour définir les permissions d’accès.
-- US-03 : En tant qu’utilisateur, je veux me connecter et modifier mes informations personnelles.
-- US-04 : En tant que responsable IT, je veux visualiser la liste des utilisateurs actifs et leurs droits.
-
-### Gestion des issues
-- US-05 : En tant qu’utilisateur, je veux signaler un problème technique (issue) pour obtenir une assistance.
-- US-06 : En tant que membre IT, je veux attribuer un issue à un collègue pour faciliter la résolution.
-- US-07 : En tant que responsable, je veux suivre le statut et la priorité des issues.
-
-### Gestion des tâches
-- US-08 : En tant que membre IT, je veux créer et planifier des tâches internes.
-- US-09 : En tant que responsable, je veux assigner des tâches à l’équipe IT.
-- US-10 : En tant qu’utilisateur, je veux consulter l’avancement des tâches liées à mes demandes.
-
-### Gestion des releases
-- US-11 : En tant que responsable IT, je veux planifier les releases pour organiser le déploiement de nouvelles versions.
-- US-12 : En tant que membre IT, je veux documenter et publier les notes de version.
-- US-13 : En tant que responsable, je veux consulter l’historique des releases pour assurer la traçabilité.
-
-### Gestion des tests
-- US-14 : En tant que testeur, je veux créer et exécuter des cas de tests.
-- US-15 : En tant que membre IT, je veux enregistrer les résultats des tests exécutés.
-- US-16 : En tant que responsable, je veux accéder à des rapports de tests pour valider les releases.
-
-### Gestion de la documentation
-- US-17 : En tant que membre IT, je veux accéder à la documentation technique et aux procédures internes.
-- US-18 : En tant que nouvel utilisateur, je veux consulter des guides de démarrage.
-- US-19 : En tant qu’administrateur, je veux pouvoir gérer et publier des documents techniques mis à jour.
-
-
+Application web de gestion de projet inspirée de Trello et Jira.  
+Objectif : permettre la gestion de tâches avec trois vues principales :
+- **Backlog** : liste des issues à planifier
+- **Tableau (Kanban)** : suivi des tâches par statut
+- **Chronologie** : visualisation temporelle des issues (type Gantt)
 
 ---
 
-## Tableau de suivi des User Stories
+## Calendrier des sprints
 
-| ID    | Module            | Description courte                                  | Priorité | Coût de développement | Statut | Sprint    |
-|-------|-------------------|----------------------------------------------------|----------|-----------------------|--------|-----------|
-| US-01 | Utilisateurs      | Créer, modifier et supprimer des comptes           | Haute    | 15                    | À faire| Sprint 1  |
-| US-02 | Utilisateurs      | Gestion des rôles et permissions                    | Haute    | 10                    | À faire| Sprint 1  |
-| US-03 | Utilisateurs      | Authentification et profil utilisateur              | Moyenne  | 8                     | À faire| Sprint 1  |
-| US-04 | Utilisateurs      | Voir la liste et droits des utilisateurs            | Moyenne  | 5                     | À faire| Sprint 2  |
-| US-05 | Issues            | Création et soumission d’issues                     | Haute    | 15                    | À faire| Sprint 1  |
-| US-06 | Issues            | Attribution des issues                               | Moyenne  | 4                     | À faire| Sprint 2  |
-| US-07 | Issues            | Suivi du statut et priorité                          | Moyenne  | 7                     | À faire| Sprint 2  |
-| US-08 | Tâches            | Création et planification des tâches                | Haute    | 15                    | À faire| Sprint 1  |
-| US-09 | Tâches            | Assignation des tâches                               | Moyenne  | 10                    | À faire| Sprint 2  |
-| US-10 | Tâches            | Suivi d’avancement par utilisateur                   | Basse    | 4                     | À faire| Sprint 3  |
-| US-11 | Releases          | Planification des releases                           | Moyenne  | 10                    | À faire| Sprint 2  |
-| US-12 | Releases          | Documentation et notes de version                    | Basse    | 4                     | À faire| Sprint 3  |
-| US-13 | Releases          | Historique des releases                              | Basse    | 4                     | À faire| Sprint 3  |
-| US-14 | Tests             | Création et exécution de cas de test                 | Moyenne  | 15                    | À faire| Sprint 2  |
-| US-15 | Tests             | Enregistrement des résultats de test                 | Moyenne  | 10                    | À faire| Sprint 3  |
-| US-16 | Tests             | Génération de rapports de test                       | Moyenne  | 10                    | À faire| Sprint 3  |
-| US-17 | Documentation     | Accès à la documentation technique                   | Moyenne  | 10                    | À faire| Sprint 1  |
-| US-18 | Documentation     | Guides de démarrage pour nouveaux utilisateurs       | Basse    | 4                     | À faire| Sprint 2  |
-| US-19 | Documentation     | Publication et gestion des documents techniques      | Moyenne  | 10                    | À faire| Sprint 3  |
+| Sprint | Dates | Objectif principal |
+|---------|--------|-------------------|
+| Sprint 0 | 15 oct – 22 oct | Mise en place et cadrage |
+| Sprint 1 | 23 oct – 5 nov | MVP du tableau Kanban |
+| Sprint 2 | 6 nov – 19 nov | Gestion du backlog et des sprints |
+| Sprint 3 | 20 nov – 3 déc | Chronologie et finitions |
 
-- Le "Coût de développement" est une estimation relative sur une échelle de 1 à 20.
+---
 
-  
+## EPIC 1 – Infrastructure et mise en place
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US0.1 | En tant qu’équipe, je veux initialiser le dépôt GitHub (front + back) pour démarrer sur une base propre. | Must | Sprint 0 | 2 |
+| US0.2 | En tant qu’équipe, je veux mettre en place le Project Board, les labels et les templates d’issue pour organiser le travail. | Must | Sprint 0 | 2 |
+| US0.3 | En tant que développeur, je veux configurer un lint + prettier pour garantir une qualité de code minimale. | Must | Sprint 1 | 3 |
+| US0.4 | En tant qu’équipe, je veux un README clair avec les instructions de lancement du projet. | Must | Sprint 1 | 2 |
+
+---
+
+## EPIC 2 – Authentification et utilisateurs
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US1.1 | En tant que visiteur, je veux m’inscrire avec un email et un mot de passe pour créer un compte. | Must | Sprint 1 | 5 |
+| US1.2 | En tant qu’utilisateur, je veux me connecter à mon compte pour accéder à mes données. | Must | Sprint 1 | 5 |
+
+---
+
+## EPIC 3 – Tableau (vue Kanban)
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US2.1 | En tant qu’utilisateur, je veux voir mon tableau principal avec mes colonnes et mes cartes. | Must | Sprint 1 | 5 |
+| US2.2 | En tant qu’utilisateur, je veux pouvoir ajouter, renommer ou supprimer une colonne. | Must | Sprint 1 | 5 |
+| US2.3 | En tant qu’utilisateur, je veux pouvoir ajouter, modifier ou supprimer une carte. | Must | Sprint 1 | 5 |
+| US2.4 | En tant qu’utilisateur, je veux pouvoir déplacer une carte entre colonnes (drag & drop). | Must | Sprint 1 | 8 |
+| US2.5 | En tant qu’utilisateur, je veux que mes colonnes et cartes soient sauvegardées dans la base de données. | Must | Sprint 1 | 6 |
+
+---
+
+## EPIC 4 – Backlog
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US3.1 | En tant qu’utilisateur, je veux voir toutes mes issues dans un backlog unique. | Must | Sprint 2 | 5 |
+| US3.2 | En tant qu’utilisateur, je veux créer une issue avec un titre, une description, une priorité et un type. | Must | Sprint 2 | 6 |
+| US3.3 | En tant qu’utilisateur, je veux réordonner mes issues dans le backlog (drag & drop). | Should | Sprint 2 | 5 |
+| US3.4 | En tant qu’utilisateur, je veux planifier une issue dans un sprint (drag & drop vers sprint). | Should | Sprint 2 | 7 |
+
+---
+
+## EPIC 5 – Sprints
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US4.1 | En tant qu’utilisateur, je veux créer un sprint avec un nom et des dates de début/fin. | Must | Sprint 2 | 5 |
+| US4.2 | En tant qu’utilisateur, je veux démarrer un sprint planifié pour le rendre actif. | Must | Sprint 2 | 5 |
+| US4.3 | En tant qu’utilisateur, je veux clôturer un sprint et voir les issues terminées. | Should | Sprint 3 | 6 |
+
+---
+
+## EPIC 6 – Chronologie (vue Gantt)
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US5.1 | En tant qu’utilisateur, je veux voir mes issues sous forme de barres sur une chronologie. | Must | Sprint 3 | 7 |
+| US5.2 | En tant qu’utilisateur, je veux pouvoir déplacer ou redimensionner une barre pour modifier les dates. | Should | Sprint 3 | 8 |
+
+---
+
+## EPIC 7 – Tests et intégration
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US6.1 | En tant qu’équipe, je veux écrire des tests unitaires sur les fonctions critiques du front et du back (ex : reorder, validation, store). | Must | Sprint 2 | 5 |
+| US6.2 | En tant qu’équipe, je veux exécuter automatiquement les tests via une **pipeline GitHub Actions** à chaque push. | Should | Sprint 2 | 4 |
+
+---
+
+## EPIC 8 – Améliorations UX/UI
+
+| ID | User Story | Priorité | Sprint | Estimation |
+|----|-------------|-----------|----------|-------------|
+| US7.1 | En tant qu’utilisateur, je veux une interface claire avec des couleurs cohérentes et lisibles. | Could | Sprint 3 | 4 |
+| US7.2 | En tant qu’utilisateur, je veux une navigation simple entre Backlog, Tableau et Chronologie. | Must | Sprint 2 | 4 |
+
+---
+
+## Synthèse par sprint
+
+| Sprint | Objectif principal | US clés | Estimation totale |
+|---------|--------------------|---------|-------------------|
+| **Sprint 0** | Préparation du cadre projet | US0.1, US0.2 | 4 |
+| **Sprint 1** | MVP du tableau Kanban | US1.1, US1.2, US2.1 → US2.5 | 34 |
+| **Sprint 2** | Backlog + sprints + tests unitaires | US3.1 → US4.2, US6.1, US6.2, US7.2 | 46 |
+| **Sprint 3** | Chronologie et finitions | US4.3, US5.1, US5.2, US7.1 | 25 |
+
+---
+
+## Synthèse des priorités
+
+**Must have**
+- Authentification
+- Tableau Kanban (CRUD + drag & drop)
+- Backlog produit (vue liste)
+- Gestion des sprints
+- Tests unitaires simples (Vitest)
+- Pipeline GitHub Actions
+- Navigation entre vues
+
+**Should have**
+- Filtrage, réorganisation du backlog
+- Chronologie simplifiée
+- Interface plus fluide
+
+**Could have**
+- Amélioration visuelle, design plus poussé
+- Filtres ou recherche avancée
+- Thème clair/sombre (bonus)
