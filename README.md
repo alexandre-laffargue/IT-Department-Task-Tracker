@@ -18,7 +18,7 @@
 - Gestion des tests (qualité, vérification)
 - Gestion de la documentation (connaissances, référentiels)
 
----# Backlog Produit – Projet Trello/Jira-Like
+---
 
 ## Contexte
 
