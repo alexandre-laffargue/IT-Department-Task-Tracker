@@ -41,7 +41,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 1 – Infrastructure et mise en place
+## EPIC 0 – Infrastructure et mise en place
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -52,7 +52,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 2 – Authentification et utilisateurs
+## EPIC 1 – Authentification et utilisateurs
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -61,7 +61,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 3 – Tableau (vue Kanban)
+## EPIC 2 – Tableau (vue Kanban)
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -73,7 +73,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 4 – Backlog
+## EPIC 3 – Backlog
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -84,7 +84,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 5 – Sprints
+## EPIC 4 – Sprints
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -94,7 +94,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 6 – Chronologie (vue Gantt)
+## EPIC 5 – Chronologie (vue Gantt)
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -103,7 +103,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 7 – Tests et intégration
+## EPIC 6 – Tests et intégration
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -112,7 +112,7 @@ Objectif : permettre la gestion de tâches avec trois vues principales :
 
 ---
 
-## EPIC 8 – Améliorations UX/UI
+## EPIC 7 – Améliorations UX/UI
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
