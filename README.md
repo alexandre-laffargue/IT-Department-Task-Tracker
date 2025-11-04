@@ -151,23 +151,21 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 ---
 
 ## Synthèse des priorités
+**Must have**
+- Authentification  
+- Tableau Kanban (CRUD + drag & drop)  
+- Backlog produit (vue liste)  
+- Gestion des sprints  
+- Tests unitaires simples (Vitest)  
+- Pipeline GitHub Actions  
+- Navigation entre vues  
 
-### **Must have**
-- Authentification JWT
-- Tableau Kanban complet (CRUD + drag & drop)
-- Backlog produit (vue liste + tri)
-- Gestion des sprints (création → clôture)
-- Tests unitaires (Vitest)
-- Pipeline CI/CD GitHub Actions
-- Navigation claire entre les vues
+**Should have**
+- Filtrage, réorganisation du backlog  
+- Chronologie simplifiée  
+- Interface plus fluide  
 
-### **Should have**
-- Réorganisation du backlog (drag & drop)
-- Chronologie interactive (vue Gantt)
-- Récapitulatif de sprint à la clôture
-
-### **Could have**
-- Amélioration visuelle et responsive
-- Thème clair/sombre
-- Statistiques de sprint (future version)
-
+**Could have**
+- Amélioration visuelle  
+- Filtres/recherche avancée  
+- Thème clair/sombre (bonus)
