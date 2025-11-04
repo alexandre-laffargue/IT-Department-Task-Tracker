@@ -1,6 +1,6 @@
-# 🧭 Conduite de Projet – Project Manager App
+# Conduite de Projet – Project Manager App
 
-## 🧱 Description
+## Description
 Application web de **gestion de projet agile** inspirée de **Trello** et **Jira**.  
 Elle permet de gérer des **issues**, **tâches**, **sprints** et **releases** avec trois vues principales :
 
@@ -12,7 +12,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## ⚙️ Technologies utilisées
+## Technologies utilisées
 
 | Domaine | Technologie | Rôle |
 |----------|--------------|------|
@@ -26,7 +26,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 Modules principaux
+## Modules principaux
 
 - Gestion des **utilisateurs** (auth, rôles, sécurité)
 - Gestion du **backlog** (issues, priorisation)
@@ -37,8 +37,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 - Gestion de la **documentation** et des releases
 
 ---
-
-## 🗓️ Calendrier des sprints
+## Calendrier des sprints
 
 | Sprint | Dates | Objectif principal |
 |---------|--------|-------------------|
@@ -49,7 +48,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧠 Répartition des rôles
+## Répartition des rôles
 
 | Membre | Rôle principal | Domaines |
 |---------|----------------|-----------|
@@ -58,7 +57,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 0 – Infrastructure et mise en place
+## EPIC 0 – Infrastructure et mise en place
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -69,7 +68,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 1 – Authentification et utilisateurs
+## EPIC 1 – Authentification et utilisateurs
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -78,7 +77,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 2 – Tableau (Kanban)
+## EPIC 2 – Tableau (Kanban)
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -90,7 +89,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 3 – Backlog
+## EPIC 3 – Backlog
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -101,7 +100,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 4 – Sprints
+## EPIC 4 – Sprints
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -111,7 +110,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 5 – Chronologie (Gantt)
+## EPIC 5 – Chronologie (Gantt)
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -120,7 +119,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 6 – Tests & Intégration continue
+## EPIC 6 – Tests & Intégration continue
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -129,7 +128,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🧩 EPIC 7 – UX/UI et ergonomie
+## EPIC 7 – UX/UI et ergonomie
 
 | ID | User Story | Priorité | Sprint | Estimation |
 |----|-------------|-----------|----------|-------------|
@@ -138,7 +137,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 📊 Synthèse par sprint
+## Synthèse par sprint
 
 | Sprint | Objectif principal | User Stories clés | Estimation totale |
 |---------|--------------------|-------------------|-------------------|
@@ -151,7 +150,7 @@ L’objectif est de fournir un outil simple, complet et collaboratif pour suivre
 
 ---
 
-## 🎯 Synthèse des priorités
+## Synthèse des priorités
 
 ### **Must have**
 - Authentification JWT
