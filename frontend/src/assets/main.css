@@ -5,5 +5,7 @@
 /* Styles de base pour améliorer l'UX (US7.1) */
 body {
   font-family: 'Inter', sans-serif;
-  @apply text-gray-800 bg-gray-50;
+  /* Avoid @apply here to prevent PostCSS/Tailwind @apply resolution issues in some setups */
+  color: #1f2937; /* tailwind text-gray-800 */
+  background-color: #f9fafb; /* tailwind bg-gray-50 */
 }
