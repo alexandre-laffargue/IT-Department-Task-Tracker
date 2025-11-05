@@ -19,7 +19,7 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok' })
 })
 
-// Swagger UI (charge swagger/openapi.yaml)
+// Swagger UI
 const swaggerDocument = YAML.load(path.join(__dirname, '../swagger/openapi.yaml'))
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
@@ -38,4 +38,5 @@ app.use((err, _req, res, _next) => {
   res.status(status).json({ error: err.message || 'Internal Server Error' })
 })
 
+export default app
 module.exports = app
