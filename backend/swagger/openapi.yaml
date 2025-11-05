@@ -1,0 +1,370 @@
+openapi: 3.0.3
+info:
+  title: Conduite de Projet API
+  version: 0.1.0
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: Auth
+  - name: Boards
+  - name: Columns
+  - name: Cards
+  - name: System
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          type: object
+          properties:
+            id: { type: string }
+            email: { type: string, format: email }
+            name: { type: string }
+            roles:
+              type: array
+              items: { type: string }
+    Board:
+      type: object
+      properties:
+        _id: { type: string }
+        name: { type: string }
+        ownerId: { type: string }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    Column:
+      type: object
+      properties:
+        _id: { type: string }
+        boardId: { type: string }
+        key: { type: string }
+        title: { type: string }
+        wipLimit: { type: integer }
+        order: { type: integer }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    Card:
+      type: object
+      properties:
+        _id: { type: string }
+        boardId: { type: string }
+        columnId: { type: string }
+        title: { type: string }
+        description: { type: string }
+        position: { type: integer }
+        labels:
+          type: array
+          items: { type: string }
+        assignees:
+          type: array
+          items: { type: string }
+        dueDate:
+          type: string
+          format: date-time
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+paths:
+  /health:
+    get:
+      tags: [System]
+      summary: Health check
+      responses:
+        '200': { description: OK }
+
+  /api/auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, name]
+              properties:
+                email: { type: string, format: email, example: alice@example.com }
+                password: { type: string, minLength: 8, example: Passw0rd! }
+                name: { type: string, example: Alice }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthResponse' }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '409': { description: Email already used, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/auth/login:
+    post:
+      tags: [Auth]
+      summary: Login and receive JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email, example: alice@example.com }
+                password: { type: string, example: Passw0rd! }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuthResponse' }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '401': { description: Invalid credentials, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/me:
+    get:
+      tags: [Auth]
+      summary: Get current user from JWT
+      security: [ { bearerAuth: [] } ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+        '401': { description: Unauthorized, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/boards:
+    post:
+      tags: [Boards]
+      summary: Create board
+      security: [ { bearerAuth: [] } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string, example: Mon Board }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Board' }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/boards/me:
+    get:
+      tags: [Boards]
+      summary: List my boards
+      security: [ { bearerAuth: [] } ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Board' }
+
+  /api/boards/{boardId}/columns:
+    post:
+      tags: [Columns]
+      summary: Create column on a board
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: boardId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key, title]
+              properties:
+                key: { type: string, example: todo }
+                title: { type: string, example: To do }
+                wipLimit: { type: integer, example: 0 }
+                order: { type: integer, example: 0 }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Column' }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Board not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '409': { description: Column key already exists, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/columns/{id}:
+    patch:
+      tags: [Columns]
+      summary: Update column
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                wipLimit: { type: integer }
+                order: { type: integer }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Column' }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Column not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    delete:
+      tags: [Columns]
+      summary: Delete column
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: Deleted }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Column not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/boards/{boardId}/cards:
+    get:
+      tags: [Cards]
+      summary: List cards of a board (optionally by column)
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: boardId
+          required: true
+          schema: { type: string }
+        - in: query
+          name: columnId
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Card' }
+        '404': { description: Board not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    post:
+      tags: [Cards]
+      summary: Create card on a board
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: boardId
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, columnId]
+              properties:
+                title: { type: string, example: Préparer démo }
+                description: { type: string }
+                columnId: { type: string }
+                position: { type: integer, example: 0 }
+                labels:
+                  type: array
+                  items: { type: string }
+                assignees:
+                  type: array
+                  items: { type: string }
+                dueDate: { type: string, format: date-time }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Card' }
+        '400': { description: Validation error / invalid column, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Board not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+
+  /api/cards/{id}:
+    patch:
+      tags: [Cards]
+      summary: Update card and/or move it
+      description: |
+        Pour déplacer, fournir `toColumnId` (et éventuellement `toPosition`).
+        Les autres champs (title, description, labels, assignees, dueDate) peuvent être patchés dans la même requête.
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                labels: { type: array, items: { type: string } }
+                assignees: { type: array, items: { type: string } }
+                dueDate: { type: string, format: date-time }
+                toColumnId: { type: string, description: "target column id" }
+                toPosition: { type: integer, description: "position in target column (0-based)" }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Card' }
+        '400': { description: Validation error / bad target column, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Card not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+    delete:
+      tags: [Cards]
+      summary: Delete card
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '204': { description: Deleted }
+        '403': { description: Forbidden, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '404': { description: Card not found, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
