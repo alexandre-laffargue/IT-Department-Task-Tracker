@@ -1,0 +1,74 @@
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+Yarn-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+coverage-final.json
+.clover
+.nyc_output/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+.tmp/
+temp/
+.cache/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker overrides
+docker-compose.override.yml
+
+# Testing
+/vitest-coverage/
+
+# Misc
+*.tgz
+*.log
+*.local
+
+# ESLint / tooling caches
+.eslintcache
+
+# Vite / bundlers
+.node_modules/.cache
+.parcel-cache/
+.next/
+.vite/
+
+# Others
+*.env
+.env.test
+
+# Keep package-lock.json and yarn.lock under version control
+# (uncomment if you prefer ignoring lockfiles)
+# package-lock.json
+# yarn.lock
