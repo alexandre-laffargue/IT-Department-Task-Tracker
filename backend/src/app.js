@@ -10,7 +10,23 @@ const path = require('path')
 const app = express()
 
 app.use(helmet())
-app.use(cors())
+
+// Configure CORS to allow frontend requests.
+// If FRONTEND_ORIGIN is set in env, allow only that origin and enable credentials.
+// Otherwise (development), allow any origin.
+const frontendOrigin = process.env.FRONTEND_ORIGIN
+if (frontendOrigin) {
+  app.use(cors({
+    origin: frontendOrigin,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  }))
+} else {
+  // permissive during development (Vite proxy should also forward requests)
+  app.use(cors())
+}
+
 app.use(express.json())
 app.use(morgan('dev'))
 
@@ -38,5 +54,4 @@ app.use((err, _req, res, _next) => {
   res.status(status).json({ error: err.message || 'Internal Server Error' })
 })
 
-export default app
 module.exports = app

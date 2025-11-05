@@ -10,6 +10,12 @@
       </div>
 
       <div class="field">
+        <label for="name">Nom</label>
+        <input id="name" type="text" v-model="form.name" :class="{ invalid: errors.name }" autocomplete="name" required />
+        <p class="error" v-if="errors.name">{{ errors.name }}</p>
+      </div>
+
+      <div class="field">
         <label for="password">Mot de passe</label>
         <input id="password" type="password" v-model="form.password" :class="{ invalid: errors.password }" autocomplete="new-password" required />
         <p class="error" v-if="errors.password">{{ errors.password }}</p>
@@ -44,8 +50,8 @@ import { useAuthStore } from '../stores/auth'
 const router = useRouter()
 const auth = useAuthStore()
 
-const form = reactive({ email: '', password: '', confirmPassword: '' })
-const errors = reactive({ email: '', password: '', confirm: '', general: '' })
+const form = reactive({ email: '', name: '', password: '', confirmPassword: '' })
+const errors = reactive({ name: '', email: '', password: '', confirm: '', general: '' })
 const loading = ref(false)
 
 function validate() {
@@ -60,6 +66,14 @@ function validate() {
     ok = false
   } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
     errors.email = "L'adresse e-mail n'est pas valide."
+    ok = false
+  }
+
+  if (!form.name) {
+    errors.name = 'Le nom est requis.'
+    ok = false
+  } else if (form.name.length < 2) {
+    errors.name = 'Le nom doit contenir au moins 2 caractères.'
     ok = false
   }
 
@@ -83,7 +97,7 @@ async function handleRegister() {
   if (!validate()) return
   loading.value = true
   try {
-    await auth.register({ email: form.email, password: form.password })
+  await auth.register({ email: form.email, password: form.password, name: form.name })
     // success
     await router.push('/login')
   } catch (err) {

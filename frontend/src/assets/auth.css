@@ -34,6 +34,7 @@
 }
 
 .field input[type="email"],
+.field input[type="text"],
 .field input[type="password"] {
     padding: 10px 12px;
     border: 1px solid #dcdcdc;

@@ -43,7 +43,13 @@
 			</ul>
 
 			<div class="nav-bottom">
-				<button class="login-btn" @click="onLogin">se connecter</button>
+				<template v-if="auth.isAuthenticated">
+					<div class="user-info">Bonjour, <strong>{{ auth.user ? auth.user.name : auth.user }}</strong></div>
+					<button class="login-btn" @click="logout">Déconnexion</button>
+				</template>
+				<template v-else>
+					<button class="login-btn" @click="onLogin">Se connecter</button>
+				</template>
 			</div>
 		</nav>
 	</aside>
@@ -52,11 +58,13 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 import '@/assets/leftnav.css'
 
 
 const router = useRouter()
 const route = useRoute()
+const auth = useAuthStore()
 
 const selected = ref('Kanban')
 
@@ -92,6 +100,11 @@ function select(name) {
 }
 
 function onLogin() {
+		router.push('/login')
+}
+
+function logout() {
+	auth.logout()
 	router.push('/login')
 }
 </script>

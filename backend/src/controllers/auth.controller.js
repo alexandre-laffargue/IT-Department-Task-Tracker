@@ -16,7 +16,8 @@ const loginSchema = Joi.object({
 
 async function register (req, res, next) {
   try {
-    const { email, password, name } = await registerSchema.validateAsync(req.body)
+  const validated = await registerSchema.validateAsync(req.body || {})
+  const { email, password, name } = validated
 
     const exists = await User.findOne({ email })
     if (exists) return res.status(409).json({ error: 'Email already used' })
@@ -37,7 +38,8 @@ async function register (req, res, next) {
 
 async function login (req, res, next) {
   try {
-    const { email, password } = await loginSchema.validateAsync(req.body)
+  const validatedLogin = await loginSchema.validateAsync(req.body || {})
+  const { email, password } = validatedLogin
 
     const user = await User.findOne({ email })
     if (!user) return res.status(401).json({ error: 'Invalid credentials' })
